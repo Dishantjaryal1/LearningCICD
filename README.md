@@ -1,42 +1,109 @@
+⚙️ CI/CD with GitHub Actions (Frontend + Backend Testing)
 
-# Imagify - Ai Image Generator
+This project implements CI/CD using GitHub Actions to automatically run tests on both the frontend and backend before any code is merged to the main branch.
+🔍 What It Does
 
-Converts user text input to image using Ai.
-AI image generators have become powerful tools, enabling users to create complex and highly detailed images from textual descriptions
+    ✅ Automatically runs frontend tests using Vitest.
 
-## How to run
+    ✅ Automatically runs backend tests using Jest or your preferred backend test runner.
 
-Frontend - npm run dev
-Backend - npm run dev
+    ✅ Executes on every push or pull request targeting the main branch.
 
+    ✅ Ensures that no broken code is merged.
 
+🛠️ CI/CD Workflow File
 
+Path: .github/workflows/test.yml
 
-## Features
+name: CI - Frontend & Backend Tests
 
-1. Text-to-Image Generation
-2. Style Customization
-3. Multiple Image Variations
-## Environment Variables
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
 
-To run this project, you will need to add the following environment variables to your .env file
+jobs:
+  test-frontend:
+    name: 🔧 Test Frontend
+    runs-on: ubuntu-latest
 
-In frontend :-
+    defaults:
+      run:
+        working-directory: ./frontend
 
-VITE_BACKEND_URL = 'http://localhost:4000'
-VITE_RAZORPAY_KEY_ID="demo_razorpay_key"
+    steps:
+      - name: ⬇️ Checkout code
+        uses: actions/checkout@v4
 
-In Backend :-
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
 
-MONGO_URI="mongo_Atlas_url"
+      - name: 📦 Install dependencies
+        run: npm ci
 
-JWT_SECRET="secretKey"
+      - name: 🧪 Run frontend tests
+        run: npm test
 
-CLIPDROP_API="your_clipdrop_Api"
+  test-backend:
+    name: 🔧 Test Backend
+    runs-on: ubuntu-latest
 
-RAZORPAY_KEY_ID="RAZORPAY_KEY_ID"
-RAZORPAY_KEY_SECRET="demo_secret_key"
+    defaults:
+      run:
+        working-directory: ./backend
 
-CURRENCY="INR"
+    steps:
+      - name: ⬇️ Checkout code
+        uses: actions/checkout@v4
 
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
 
+      - name: 📦 Install dependencies
+        run: npm ci
+
+      - name: 🧪 Run backend tests
+        run: npm test
+
+📁 Project Structure (Imagify MERN)
+
+```
+imagify/
+├── backend/
+│   ├── ... (Express, MongoDB, Jest tests)
+│   └── package.json
+│
+├── frontend/
+│   ├── ... (React + Vite, Vitest tests)
+│   └── package.json
+│
+└── .github/
+    └── workflows/
+        └── test.yml
+```
+
+✅ Requirements
+
+Ensure each app has its own test script:
+frontend/package.json
+
+"scripts": {
+  "test": "vitest"
+}
+
+backend/package.json
+
+"scripts": {
+  "test": "jest"
+}
+
+    You can replace jest with mocha, supertest, or any backend testing framework you're using.
+
+🧪 Result
+
+This setup ensures every PR or push to main is verified through a robust CI pipeline. If tests fail, merging is blocked — maintaining a stable and tested main branch.
