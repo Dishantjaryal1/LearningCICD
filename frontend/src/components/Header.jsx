@@ -1,4 +1,6 @@
+import React from "react";
 import { useContext } from "react"
+
 import { assets } from "../assets/assets"
 import { motion } from "motion/react"
 import { AppContext } from "../context/AppContext"

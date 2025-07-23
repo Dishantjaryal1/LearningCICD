@@ -1,4 +1,7 @@
+/* eslint-disable no-unused-vars */
+import React from "react";
 import { assets } from "../assets/assets"
+
 import { useContext } from "react"
 import { motion } from "framer-motion"
 import { AppContext } from "../context/AppContext"

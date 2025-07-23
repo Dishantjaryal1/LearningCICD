@@ -1,8 +1,27 @@
+import React from 'react'; // ✅ Required for JSX
+import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import App from '../App';
-import { test, expect } from 'vitest';
+import { MemoryRouter } from 'react-router-dom';
+import App from '../src/App';
+import { AppContext } from '../src/context/AppContext';
 
-test('renders Imagify heading', () => {
-  render(<App />);
-  expect(screen.getByText(/Imagify/i)).toBeInTheDocument();
+describe('App component', () => {
+  it('renders Imagify heading', () => {
+    render(
+      <AppContext.Provider value={{
+        showLogin: false,
+        setShowLogin: () => {},
+        user: null,
+        logout: () => {},
+        credit: 0
+      }}>
+        <MemoryRouter>
+          <App />
+        </MemoryRouter>
+      </AppContext.Provider>
+    );
+
+   expect(screen.getAllByText(/imagify/i).length).toBeGreaterThan(0);
+
+  });
 });

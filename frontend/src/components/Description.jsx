@@ -1,5 +1,7 @@
+import React from "react";
 import { assets } from "../assets/assets"
 import {motion} from  'framer-motion'
+
 function Description() {
   return (
     <motion.div 

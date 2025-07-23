@@ -1,7 +1,9 @@
+import React from "react";
 import { Link, useNavigate } from 'react-router-dom'
 import { assets } from '../assets/assets'
 import { useContext } from 'react';
 import { AppContext } from '../context/AppContext';
+
 
 function Navbar() {
     const navigate = useNavigate();

@@ -1,5 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
+import React from "react";
 import { useContext, useEffect, useState } from "react"
+
 import { assets } from "../assets/assets"
 import { AppContext } from "../context/AppContext";
 import { motion } from 'framer-motion'

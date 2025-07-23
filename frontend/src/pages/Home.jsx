@@ -1,3 +1,4 @@
+import React from "react"
 import Description from "../components/Description"
 import GenerateBtn from "../components/GenerateBtn"
 import Header from "../components/Header"

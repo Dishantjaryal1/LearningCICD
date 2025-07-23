@@ -1,4 +1,4 @@
-//import React from 'react'
+import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 import BuyCredit from './pages/BuyCredit'
 import Home from './pages/Home'
