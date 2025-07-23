@@ -16,11 +16,11 @@ app.use(cors());
 
 await connectDb();
 
+
 app.use('/api/user',userRouter);
 app.use('/api/image',imageRouter);
 app.get('/',(req,res)=>{
     res.send("Api Working")
 })
-
 
 app.listen(PORT,( )=> console.log(`Server Started at ${PORT}`));
