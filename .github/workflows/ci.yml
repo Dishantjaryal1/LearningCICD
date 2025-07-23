@@ -37,7 +37,7 @@ jobs:
         run: npm install
 
       - name: Run Backend Tests (optional)
-        working-directory: ./server
+        working-directory: ./backend
         run: echo "No tests yet" # Replace with: npm test
 
       # Setup client
@@ -46,5 +46,5 @@ jobs:
         run: npm install
 
       - name: Build Frontend
-        working-directory: ./client
+        working-directory: ./frontend
         run: npm run build
