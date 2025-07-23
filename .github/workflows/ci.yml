@@ -32,22 +32,22 @@ jobs:
 
       # Backend setup
       - name: Install Backend Dependencies
-        working-directory: ./server
+        working-directory: ./backend
         run: npm install
 
       - name: Run Backend Tests
-        working-directory: ./server
+        working-directory: ./backend
         run: npm test
 
       # Frontend setup
       - name: Install Frontend Dependencies
-        working-directory: ./client
+        working-directory: ./frontend
         run: npm install
 
       - name: Run Frontend Tests
-        working-directory: ./client
+        working-directory: ./frontend
         run: npm run test -- --passWithNoTests
 
       - name: Build Frontend
-        working-directory: ./client
+        working-directory: ./frontend
         run: npm run build
