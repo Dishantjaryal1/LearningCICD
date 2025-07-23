@@ -8,7 +8,6 @@ on:
 
 jobs:
   build-and-test:
-
     runs-on: ubuntu-latest
 
     services:
@@ -31,20 +30,24 @@ jobs:
         with:
           node-version: 18
 
-      # Setup server
+      # Backend setup
       - name: Install Backend Dependencies
-        working-directory: ./backend
+        working-directory: ./server
         run: npm install
 
-      - name: Run Backend Tests (optional)
-        working-directory: ./backend
-        run: echo "No tests yet" # Replace with: npm test
+      - name: Run Backend Tests
+        working-directory: ./server
+        run: npm test
 
-      # Setup client
+      # Frontend setup
       - name: Install Frontend Dependencies
-        working-directory: ./frontend 
+        working-directory: ./client
         run: npm install
+
+      - name: Run Frontend Tests
+        working-directory: ./client
+        run: npm run test -- --passWithNoTests
 
       - name: Build Frontend
-        working-directory: ./frontend
+        working-directory: ./client
         run: npm run build
