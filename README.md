@@ -1,4 +1,4 @@
-⚙️ CI/CD with GitHub Actions (Frontend + Backend Testing)
+## ⚙️ CI/CD with GitHub Actions (Frontend + Backend Testing)
 
 This project implements CI/CD using GitHub Actions to automatically run tests on both the frontend and backend before any code is merged to the main branch.
 🔍 What It Does
