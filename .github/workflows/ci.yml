@@ -33,7 +33,7 @@ jobs:
 
       # Setup server
       - name: Install Backend Dependencies
-        working-directory: ./server
+        working-directory: ./backend
         run: npm install
 
       - name: Run Backend Tests (optional)
@@ -42,7 +42,7 @@ jobs:
 
       # Setup client
       - name: Install Frontend Dependencies
-        working-directory: ./client
+        working-directory: ./frontend 
         run: npm install
 
       - name: Build Frontend
