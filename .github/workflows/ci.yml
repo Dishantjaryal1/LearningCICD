@@ -60,10 +60,10 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build Docker Image
-        run: docker build -t your-docker-username/imagify:latest -f dockerfile .
+        run: docker build -t dishantjaryal/imagify:latest -f dockerfile .
 
       - name: Push Docker Image to Docker Hub
-        run: docker push your-docker-username/imagify:latest
+        run: docker push dishantjaryal/imagify:latest
 
 
 
