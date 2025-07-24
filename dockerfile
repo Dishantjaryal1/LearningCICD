@@ -1,23 +1,31 @@
-# backend stage
-FROM node:18 AS backend
-WORKDIR /app/backend
-COPY backend/package*.json ./
-RUN npm install
-COPY backend .
+# Stage 1: Build frontend (React/Vite)
+FROM node:18 AS frontend-builder
 
-# frontend stage
-FROM node:18 AS frontend
 WORKDIR /app/frontend
 COPY frontend/package*.json ./
 RUN npm install
 COPY frontend .
 RUN npm run build
 
-# production stage (use nginx or node for deployment if needed)
+# Stage 2: Setup backend and serve frontend
 FROM node:18
+
+# Backend setup
 WORKDIR /app
-COPY --from=backend /app/backend ./backend
-COPY --from=frontend /app/frontend/dist ./frontend/dist
+COPY backend/package*.json ./backend/
+RUN cd backend && npm install
+
+# Copy backend source
+COPY backend ./backend
+
+# Copy built frontend into backend (e.g., /backend/public or /backend/dist)
+COPY --from=frontend-builder /app/frontend/dist ./backend/public
+
+# Set working directory to backend
+WORKDIR /app/backend
+
+# Expose the backend API port
+EXPOSE 4000
 
 # Start backend server
-CMD ["node", "backend/server.js"]
+CMD ["npm", "start"]
